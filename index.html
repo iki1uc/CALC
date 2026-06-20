@@ -1,1 +1,17 @@
+const muSharp = { nc: "NC-GANZ" };
+
+const parties = [
+  { id: 1, op: null },
+  { id: 2, op: null }
+];
+
+function CALC(input) {
+  const nc = muSharp.nc;
+
+  parties.forEach(p => {
+    p.op = { from: input, nc };
+  });
+
+  return { nc, parties };
+}
 
