@@ -1,10 +1,16 @@
-const muSharp = { nc: "NC-GANZ" };
+<script>
+// NC-Träger
+const muSharp = { 
+  nc: "NC-GANZ" 
+};
 
+// Parteien (minimal)
 const parties = [
   { id: 1, op: null },
   { id: 2, op: null }
 ];
 
+// CALC-Operator
 function CALC(input) {
   const nc = muSharp.nc;
 
@@ -15,3 +21,34 @@ function CALC(input) {
   return { nc, parties };
 }
 
+// LIVE-Anmeldung für CALC
+document.addEventListener("DOMContentLoaded", () => {
+  const calcStatus = document.getElementById("calc-status");
+
+  // CALC meldet sich an → GRÜN
+  calcStatus.textContent = "bereit";
+  calcStatus.className = "state green";
+});
+</script>
+
+<!-- LIVE-MELDER BLOCK -->
+<div class="status-block">
+  <strong>CALC-00</strong><br>
+  Status: <span id="calc-status" class="state yellow">lädt…</span><br>
+  Modus: Operator aktiv (Impuls / Berechnung / EVO-Start)
+</div>
+
+<style>
+  .status-block {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: #111;
+    color: #eee;
+  }
+
+  .state.green { color: #3cb371; font-weight: bold; }   /* bereit */
+  .state.yellow { color: #ffcc00; font-weight: bold; }  /* lädt */
+  .state.red { color: #ff4444; font-weight: bold; }     /* fehler */
+</style>
